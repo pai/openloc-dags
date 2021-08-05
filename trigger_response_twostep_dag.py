@@ -72,18 +72,26 @@ with models.DAG(
 
     segment_asset = bash_operator.BashOperator(
         task_id='segment_asset', 
-        jar='gs://jar-holder/okapi-genesis-0.36-jar-with-dependencies.jar',
-        job_class='Main',
-        options={
-            "-f" : "gs://assetmanager-321903/geronimo.properties",
-            "-a" : "e",
-            "-il" : "en",
-            "-ol" : "fr"
+        bash_command
+        # jar='gs://jar-holder/okapi-genesis-0.36-jar-with-dependencies.jar',
+        # job_class='Main',
+        # options={
+        #     "-f" : "gs://assetmanager-321903/geronimo.properties",
+        #     "-a" : "e",
+        #     "-il" : "en",
+        #     "-ol" : "fr"
 
 
             
-        },
+        # }
+        ,
         dag=dag)
+
+    segment_asset = bash_operator.BashOperator(
+        task_id='segment_asset', 
+        bbash_command = 'java -cp gs://jar-holder/okapi-genesis-0.36-jar-with-dependencies.jar',
+        params = {'f': 'gs://assetmanager-321903/geronimo.properties', 'a': 'e', 'il': 'en', 'ol': 'fr'}
+    )
 
     analyse_tm = bash_operator.BashOperator(
         task_id='analyse_tm', bash_command='echo analysing...')
