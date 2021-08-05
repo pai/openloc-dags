@@ -75,11 +75,11 @@ with models.DAG(
         jar='gs://jar-holder/okapi-genesis-0.36-jar-with-dependencies.jar',
         job_class='Main',
         options={
-            "-f" = "gs://assetmanager-321903/geronimo.properties",
-            "-a" = "e",
-            "-il" = "en",
-            "-ol" = "fr",
-            
+            "-f" : "gs://assetmanager-321903/geronimo.properties",
+            "-a" : "e",
+            "-il" : "en",
+            "-ol" : "fr"
+
 
             
         },
