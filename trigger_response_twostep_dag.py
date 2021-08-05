@@ -18,6 +18,9 @@
 import datetime
 import time
 import random
+import os
+
+
 
 import airflow
 from airflow import models
@@ -29,6 +32,9 @@ from airflow.operators import dummy_operator
 yesterday = datetime.datetime.combine(
     datetime.datetime.today() - datetime.timedelta(1),
     datetime.datetime.min.time())
+
+DAGS_FOLDER = os.environ["DAGS_FOLDER"]
+jar_file = f"{DAGS_FOLDER}/okapi-genesis-0.36-jar-with-dependencies.jar"
 
 
 default_args = {
@@ -74,7 +80,7 @@ with models.DAG(
 
     segment_asset = bash_operator.BashOperator(
         task_id='segment_asset', 
-        bash_command = 'java -jar gs://asia-east2-asset-manager-te-366023d7-bucket/dags/okapi-genesis-0.36-jar-with-dependencies.jar',
+        bash_command = 'java -jar ' + jar_file,
         params = {'f': 'gs://assetmanager-321903/geronimo.properties', 'a': 'e', 'il': 'en', 'ol': 'fr'}
     )
 
