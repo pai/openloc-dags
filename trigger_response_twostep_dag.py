@@ -70,22 +70,7 @@ with models.DAG(
     print_gcs_info = bash_operator.BashOperator(
         task_id='print_gcs_info', bash_command='echo {{ dag_run.conf }}')
 
-    segment_asset = bash_operator.BashOperator(
-        task_id='segment_asset', 
-        bash_command
-        # jar='gs://jar-holder/okapi-genesis-0.36-jar-with-dependencies.jar',
-        # job_class='Main',
-        # options={
-        #     "-f" : "gs://assetmanager-321903/geronimo.properties",
-        #     "-a" : "e",
-        #     "-il" : "en",
-        #     "-ol" : "fr"
-
-
-            
-        # }
-        ,
-        dag=dag)
+    
 
     segment_asset = bash_operator.BashOperator(
         task_id='segment_asset', 
