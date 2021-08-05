@@ -74,7 +74,7 @@ with models.DAG(
 
     segment_asset = bash_operator.BashOperator(
         task_id='segment_asset', 
-        bash_command = 'java -jar okapi-genesis-0.36-jar-with-dependencies.jar',
+        bash_command = 'java -jar gs://asia-east2-asset-manager-te-366023d7-bucket/dags/okapi-genesis-0.36-jar-with-dependencies.jar',
         params = {'f': 'gs://assetmanager-321903/geronimo.properties', 'a': 'e', 'il': 'en', 'ol': 'fr'}
     )
 
