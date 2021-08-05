@@ -80,7 +80,7 @@ with models.DAG(
 
     segment_asset = bash_operator.BashOperator(
         task_id='segment_asset', 
-        bash_command = 'java -jar ' + jar_file + ' -f gs://assetmanager-321903/geronimo.properties -a e -il en -ol fr',
+        bash_command = 'java -jar ' + jar_file + ' -f gs://assetmanager-321903/myDoc.docx -a e -il en -ol fr',
         params = {'-f': 'gs://assetmanager-321903/geronimo.properties', '-a': 'e', 'il': 'en', 'ol': 'fr'}
     )
 
